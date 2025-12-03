@@ -1,0 +1,48 @@
+
+#!/usr/bin/env node
+
+const MockApiServer = require('../server.js');
+const fs = require('fs');
+
+// 解析命令行参数
+let configPath = './config/mock-config.json';
+let port = 3001;
+
+// 查找 --config 或 -c 参数
+const args = process.argv.slice(2);
+for (let i = 0; i < args.length; i++) {
+  if (args[i] === '--config' || args[i] === '-c') {
+    if (i + 1 < args.length) {
+      configPath = args[i + 1];
+      break;
+    }
+  }
+}
+
+// 优先级：命令行参数 > 环境变量 > 默认值
+configPath = process.env.MOCK_CONFIG || configPath;
+port = parseInt(process.env.PORT) || port;
+
+// 验证配置文件是否存在
+if (!fs.existsSync(configPath)) {
+  console.error(`❌ Configuration file not found: ${configPath}`);
+  console.error('Please create a configuration file or specify a valid path with --config');
+  process.exit(1);
+}
+
+const server = new MockApiServer(configPath, port);
+
+// 处理优雅关闭
+process.on('SIGINT', () => {
+  console.log('\nReceived SIGINT. Shutting down gracefully...');
+  server.stop();
+  process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+  console.log('\nReceived SIGTERM. Shutting down gracefully...');
+  server.stop();
+  process.exit(0);
+});
+
+server.start();
