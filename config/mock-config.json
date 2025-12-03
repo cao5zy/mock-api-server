@@ -1,0 +1,27 @@
+{
+  "get:api/user": {
+    "data": {
+      "name": "xxa",
+      "id": 1,
+      "email": "xxa@example.com"
+    }
+  },
+  "post:api/user": {
+    "data": {
+      "message": "User created successfully",
+      "status": "success"
+    }
+  },
+  "get:api/products/:id": {
+    "data": {
+      "id": "{{params.id}}",
+      "name": "Product {{params.id}}",
+      "price": 99.99
+    }
+  },
+  "default": {
+    "data": {
+      "status": "ok"
+    }
+  }
+}
