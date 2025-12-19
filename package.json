@@ -9,8 +9,8 @@
     "dummy-rest-api": "./bin/mock-api-server"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node ./bin/mock-api-server",
+    "dev": "nodemon ./bin/mock-api-server"
   },
   "dependencies": {
     "express": "^4.18.2",

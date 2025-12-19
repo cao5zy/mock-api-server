@@ -1,4 +1,3 @@
-
 #!/usr/bin/env node
 
 const MockApiServer = require('../server.js');
