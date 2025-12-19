@@ -1,7 +1,7 @@
 
 {
   "name": "dummy-rest-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple mock API server that returns configured responses or default data",
   "author": "zongying_cao@163.com",
   "main": "server.js",
