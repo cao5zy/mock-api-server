@@ -1,20 +1,19 @@
+# Dummy REST API
 
-# Mock API Server
-
-A simple mock API server that returns configured responses or default data.
+A simple mock API server that returns configured responses or default data .
 
 ## Installation
 
 Install globally to use as a CLI tool:
 
 ```bash
-npm install -g mock-api-server
+npm install -g dummy-rest-api
 ```
 
 Or install locally in your project:
 
 ```bash
-npm install mock-api-server
+npm install dummy-rest-api
 ```
 
 ## Usage
@@ -25,14 +24,14 @@ After global installation, you can run the server from anywhere:
 
 ```bash
 # Start with default configuration
-mock-api-server
+dummy-rest-api
 
 # Specify custom configuration file
-mock-api-server --config ./path/to/your/config.json
-mock-api-server -c ./path/to/your/config.json
+dummy-rest-api --config ./path/to/your/config.json
+dummy-rest-api -c ./path/to/your/config.json
 
 # Use environment variables
-MOCK_CONFIG=./config/custom.json PORT=8080 mock-api-server
+MOCK_CONFIG=./config/custom.json PORT=8080 dummy-rest-api
 ```
 
 ### Local Installation
@@ -40,7 +39,7 @@ MOCK_CONFIG=./config/custom.json PORT=8080 mock-api-server
 If installed locally, you can run it via npx:
 
 ```bash
-npx mock-api-server --config ./config/mock-config.json
+npx dummy-rest-api --config ./config/mock-config.json
 ```
 
 Or add it to your package.json scripts:
@@ -48,7 +47,7 @@ Or add it to your package.json scripts:
 ```json
 {
   "scripts": {
-    "mock-server": "mock-api-server --config ./config/mock-config.json"
+    "mock-server": "dummy-rest-api --config ./config/mock-config.json"
   }
 }
 ```
@@ -60,34 +59,28 @@ Create a configuration file (default: `./config/mock-config.json`) with your moc
 Example configuration:
 ```json
 {
-  "endpoints": {
-    "/api/users": {
-      "GET": {
-        "response": {
-          "users": [
-            {"id": 1, "name": "John Doe"},
-            {"id": 2, "name": "Jane Smith"}
-          ]
-        },
-        "status": 200
-      }
+  "get:api/user": {
+    "data": {
+      "name": "xxa",
+      "id": 1,
+      "email": "xxa@example.com"
     }
   },
-  "defaultResponse": {
+  "default": {
     "data": {
-      "message": "This is a mock response"
+      "status": "ok"
     }
   }
 }
 ```
+**The `default` key defines the response for any unconfigured endpoint**
 
 ## Features
 
-- Dynamic route matching based on your configuration
-- Automatic reload when configuration file changes
-- CORS enabled by default
-- Support for JSON and URL-encoded request bodies
+- Dynamic route matching based on your configuration  
+- Returns default response from the `default` configuration for any unconfigured URL
 - Graceful shutdown on SIGINT/SIGTERM
+
 
 ## Development
 

@@ -1,11 +1,12 @@
 
 {
-  "name": "mock-api-server",
+  "name": "dummy-rest-api",
   "version": "1.0.0",
   "description": "A simple mock API server that returns configured responses or default data",
+  "author": "zongying_cao@163.com",
   "main": "server.js",
   "bin": {
-    "mock-api-server": "./bin/mock-api-server"
+    "dummy-rest-api": "./bin/mock-api-server"
   },
   "scripts": {
     "start": "node server.js",
@@ -20,6 +21,6 @@
     "nodemon": "^3.0.1"
   },
   "keywords": ["mock", "api", "server", "testing"],
-  "author": "Your Name",
+  "git": "https://github.com/cao5zy/mock-api-server",
   "license": "MIT"
 }
